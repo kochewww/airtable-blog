@@ -5,14 +5,32 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-remark`,
+
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-source-airtable`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        apiKey: `keymF6NBtulCkHwCO`,
+        concurrency: 5,
+        tables: [
+          {
+            baseId: `appLdAhQZocD9hNDW`,
+            tableName: `blog`,
+            tableView: `published`,
+            mapping: { markdownPost: "text/markdown" },
+            tableLinks: [`author`],
+            separateNodeType: true,
+            queryName: "blog",
+          },
+          {
+            baseId: `appLdAhQZocD9hNDW`,
+            tableName: `authors`,
+          },
+        ],
       },
     },
+    `gatsby-plugin-react-helmet`,
+
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -24,11 +42,10 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
