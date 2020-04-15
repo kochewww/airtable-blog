@@ -1,16 +1,20 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Typography, Link } from "@material-ui/core";
+import { Typography, Link, Chip, Box } from "@material-ui/core";
 import { Picture, Wrapper, IconWrapper } from "../components/Styled";
 import Date from "../components/Date";
 import styled from "styled-components";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import Author from "../components/Author";
 import Layout from "../components/Layout";
+
 const DateWrapper = styled.div`
   margin-top: -25px;
   display: block;
   text-align: right;
+`;
+const StyledChip = styled(Chip)`
+  margin-right: 1rem;
 `;
 export default ({ data }) => {
   const post = data.allAirtableblog.edges[0].node.data;
@@ -39,6 +43,17 @@ export default ({ data }) => {
           <span>GitHub</span>
         </Link>
       </IconWrapper>
+      <Box mt="1rem">
+        {post.tags.map((tag) => (
+          <StyledChip
+            key={tag}
+            label={tag}
+            component="a"
+            href=""
+            onClick={console.log("clicked")}
+          />
+        ))}
+      </Box>
     </Layout>
   );
 };
@@ -49,6 +64,7 @@ export const query = graphql`
       edges {
         node {
           data {
+            tags
             slug
             markdownPost {
               childMarkdownRemark {
