@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "gatsby";
+import { Chip } from "@material-ui/core";
 export const BlockWrapper = styled.div`
   margin-bottom: 1rem;
 `;
@@ -22,4 +23,12 @@ export const Picture = styled.div`
   width: 100%;
   height: 15rem;
   margin-top: 1rem;
+`;
+export const DateWrapper = styled.div`
+  margin-top: -25px;
+  display: block;
+  text-align: right;
+`;
+export const StyledChip = styled(Chip)`
+  margin-right: 1rem;
 `;
