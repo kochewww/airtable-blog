@@ -1,30 +1,32 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Typography, Link, Box } from "@material-ui/core";
-import {
-  Picture,
-  Wrapper,
-  IconWrapper,
-  DateWrapper,
-  StyledChip,
-} from "../components/Styled";
+import { Typography, Link, Box, Chip } from "@material-ui/core";
+import { styled } from "@material-ui/core/styles";
 import Date from "../components/Date";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import Author from "../components/Author";
 import Layout from "../components/Layout";
 
+const Picture = styled(({ url, ...other }) => <Box {...other} />)({
+  backgroundImage: (props) => `url(${props.url})`,
+  backgroundSize: "100%",
+  backgroundPosition: "center",
+  width: "100%",
+  height: "15rem",
+  marginTop: " 1rem",
+});
+
 export default ({ data }) => {
   const post = data.allAirtableblog.edges[0].node.data;
   return (
     <Layout>
-      <Typography color="secondary" variant="h4">
-        {post.title}
-      </Typography>
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Typography display="inline" color="secondary" variant="h4">
+          {post.title}
+        </Typography>
 
-      <DateWrapper>
         <Date date={post.date} />
-      </DateWrapper>
-
+      </Box>
       <Picture url={post.Image[0].url} />
       <div
         dangerouslySetInnerHTML={{
@@ -32,28 +34,24 @@ export default ({ data }) => {
         }}
       />
 
-      <Wrapper>
+      <Box diplay="inline">
         <Author name={post.author[0].data.name}></Author>
-      </Wrapper>
-
-      <IconWrapper>
         <Link href={`https://github.com/${post.author[0].data.github}`}>
           <GitHubIcon fontSize="inherit"></GitHubIcon>
-          <span>GitHub</span>
+          GitHub
         </Link>
-      </IconWrapper>
+      </Box>
 
-      <Box mt="1rem">
-        {post.tags.map((tag) => (
-          <StyledChip
-            key={tag}
+      {post.tags.map((tag) => (
+        <Box key={tag} display="inline-block" mt={2} mr={1}>
+          <Chip
             label={tag}
             component="a"
             href=""
             onClick={console.log("clicked")}
           />
-        ))}
-      </Box>
+        </Box>
+      ))}
     </Layout>
   );
 };

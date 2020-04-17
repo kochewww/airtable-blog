@@ -7806,6 +7806,16 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"gatsby-plugin-web-font-loader@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "gatsby-plugin-web-font-loader@npm:1.0.4"
+  dependencies:
+    babel-runtime: ^6.26.0
+    webfontloader: ^1.6.28
+  checksum: 2/4ed4678a84bd505737e21714a8092a54d0dee3c620a94971e341da1dfed9255857e87aeed8255da1c580cb7ddb754955728b758e64081595f31733c1be8ba41b
+  languageName: node
+  linkType: hard
+
 "gatsby-react-router-scroll@npm:^2.2.1":
   version: 2.2.1
   resolution: "gatsby-react-router-scroll@npm:2.2.1"
@@ -7865,6 +7875,7 @@ fsevents@~2.1.2:
   dependencies:
     "@material-ui/core": ^4.9.10
     "@material-ui/icons": ^4.9.1
+    "@material-ui/styles": ^4.9.10
     gatsby: ^2.20.12
     gatsby-cli: ^2.11.8
     gatsby-image: ^2.3.1
@@ -7872,6 +7883,7 @@ fsevents@~2.1.2:
     gatsby-plugin-offline: ^3.1.2
     gatsby-plugin-react-helmet: ^3.2.1
     gatsby-plugin-sharp: ^2.5.3
+    gatsby-plugin-web-font-loader: ^1.0.4
     gatsby-source-airtable: ^2.1.0
     gatsby-source-filesystem: ^2.2.2
     gatsby-transformer-remark: ^2.7.1
@@ -17630,6 +17642,13 @@ fsevents@~2.1.2:
   version: 1.1.4
   resolution: "web-namespaces@npm:1.1.4"
   checksum: 2/0899d2a4a088b15761b6234ff6610f9598112d58f27adad86f7881ad51631317b47033bfa84cdeb62a37c8b6c3ece618f4ff720fd42c99f4907a1d9390c9dae0
+  languageName: node
+  linkType: hard
+
+"webfontloader@npm:^1.6.28":
+  version: 1.6.28
+  resolution: "webfontloader@npm:1.6.28"
+  checksum: 2/fea984c451eecc1566a13bdcaf04d50b0f38a032ed7c4b6d81d126f0b5434ea16a5e70d38075e21a8f6d300ff84637c329244a522f40719ebfc86bbb791f6ae3
   languageName: node
   linkType: hard
 

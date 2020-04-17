@@ -1,9 +1,9 @@
 import FaceIcon from "@material-ui/icons/Face";
 import React from "react";
-import { IconWrapper } from "../components/Styled";
+import Box from "@material-ui/core/Box";
 export default (props) => (
-  <IconWrapper>
-    <FaceIcon fontSize="inherit" />
-    <span> {props.name} </span>
-  </IconWrapper>
+  <Box display="inline" mr={1}>
+    <FaceIcon />
+    {props.name}
+  </Box>
 );

@@ -1,23 +1,20 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import TimerIcon from "@material-ui/icons/Timer";
 import Author from "../components/Author";
 import Date from "../components/Date";
-import { Typography } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import Layout from "../components/Layout";
-import {
-  BlockWrapper,
-  Wrapper,
-  StyledLink,
-  IconWrapper,
-} from "../components/Styled";
 export default ({ data }) => {
   return (
     <Layout>
       {data.allAirtableblog.edges.map(({ node }) => (
-        <BlockWrapper key={node.id}>
+        <Box mb={2} key={node.id}>
           <Typography variant="h4">
-            <StyledLink to={node.data.slug}>{node.data.title}</StyledLink>
+            <Link style={{ textDecoration: "none" }} to={`/${node.data.slug}`}>
+              {node.data.title}
+            </Link>
           </Typography>
 
           <Typography variant="subtitle1">
@@ -27,24 +24,16 @@ export default ({ data }) => {
           <br></br>
 
           <Typography variant="caption">
-            <Wrapper>
+            <Box mr={1} display="inline">
               <Date date={node.data.date} />
-            </Wrapper>
+            </Box>
 
-            <Wrapper>
-              <Author name={node.data.author[0].data.name} />
-            </Wrapper>
+            <Author name={node.data.author[0].data.name} />
 
-            <Wrapper>
-              <IconWrapper>
-                <TimerIcon fontSize="inherit" />
-                <span>
-                  {`${node.data.markdownPost.childMarkdownRemark.timeToRead}min`}
-                </span>
-              </IconWrapper>
-            </Wrapper>
+            <TimerIcon />
+            {`${node.data.markdownPost.childMarkdownRemark.timeToRead}min`}
           </Typography>
-        </BlockWrapper>
+        </Box>
       ))}
     </Layout>
   );

@@ -1,10 +1,10 @@
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import React from "react";
-import { IconWrapper } from "../components/Styled";
+import Box from "@material-ui/core/Box";
 
 export default (props) => (
-  <IconWrapper>
-    <CalendarTodayIcon fontSize="inherit" />
-    <span>{props.date}</span>
-  </IconWrapper>
+  <Box display="inline">
+    <CalendarTodayIcon />
+    {props.date}
+  </Box>
 );
