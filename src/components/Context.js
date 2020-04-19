@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-const Context = React.createContext();
+const defaultState = {
+  listData: [],
+};
+const Context = React.createContext(defaultState);
 function ContextProvider({ children }) {
   const data = useStaticQuery(
     graphql`

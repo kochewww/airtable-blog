@@ -5,7 +5,6 @@ import { styled } from "@material-ui/core/styles";
 import Date from "../components/Date";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import Author from "../components/Author";
-import Layout from "../components/Layout";
 
 const Picture = styled(({ url, ...other }) => <Box {...other} />)({
   backgroundImage: (props) => `url(${props.url})`,
@@ -19,7 +18,7 @@ const Picture = styled(({ url, ...other }) => <Box {...other} />)({
 export default ({ data }) => {
   const post = data.allAirtableblog.edges[0].node.data;
   return (
-    <Layout>
+    <>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Typography display="inline" color="secondary" variant="h4">
           {post.title}
@@ -49,7 +48,7 @@ export default ({ data }) => {
           </Link>
         </Box>
       ))}
-    </Layout>
+    </>
   );
 };
 
