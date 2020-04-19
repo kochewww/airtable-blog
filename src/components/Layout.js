@@ -3,6 +3,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
 import { theme } from "../Theme";
 import { Helmet } from "react-helmet";
+
 export default ({ children }) => (
   <>
     <Helmet>

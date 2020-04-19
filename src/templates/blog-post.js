@@ -1,6 +1,6 @@
 import React from "react";
-import { graphql } from "gatsby";
-import { Typography, Link, Box, Chip } from "@material-ui/core";
+import { graphql, Link } from "gatsby";
+import { Typography, Box, Chip } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 import Date from "../components/Date";
 import GitHubIcon from "@material-ui/icons/GitHub";
@@ -36,20 +36,17 @@ export default ({ data }) => {
 
       <Box diplay="inline">
         <Author name={post.author[0].data.name}></Author>
-        <Link href={`https://github.com/${post.author[0].data.github}`}>
+        <a href={`https://github.com/${post.author[0].data.github}`}>
           <GitHubIcon fontSize="inherit"></GitHubIcon>
           GitHub
-        </Link>
+        </a>
       </Box>
 
       {post.tags.map((tag) => (
         <Box key={tag} display="inline-block" mt={2} mr={1}>
-          <Chip
-            label={tag}
-            component="a"
-            href=""
-            onClick={console.log("clicked")}
-          />
+          <Link to={`tags/${tag}`}>
+            <Chip label={tag} />
+          </Link>
         </Box>
       ))}
     </Layout>
