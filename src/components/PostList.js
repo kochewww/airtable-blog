@@ -6,35 +6,39 @@ import Date from "../components/Date";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
-export default (props) => {
-  return (
-    <>
-      {props.data.map(({ node }) => (
-        <Box mb={2} key={node.id}>
+export default (props) => (
+  <>
+    {props.data.map(({ node }) => {
+      const data = node.data;
+      const title = data.title;
+      const excerpt = data.markdownPost.childMarkdownRemark.excerpt;
+      const date = data.date;
+      const authorName = data.author.map(({ data }) => data.name);
+      const timeToRead = node.data.markdownPost.childMarkdownRemark.timeToRead;
+      return (
+        <Box mb={2} key={node.title}>
           <Typography variant="h4">
             <Link style={{ textDecoration: "none" }} to={`/${node.data.slug}`}>
-              {node.data.title}
+              {title}
             </Link>
           </Typography>
-
-          <Typography variant="subtitle1">
-            {node.data.markdownPost.childMarkdownRemark.excerpt}
-          </Typography>
+          {excerpt}
+          <Typography variant="subtitle1"></Typography>
 
           <br></br>
 
           <Typography variant="caption">
             <Box mr={1} display="inline">
-              <Date date={node.data.date} />
+              <Date date={date} />
             </Box>
 
-            <Author name={node.data.author[0].data.name} />
+            <Author name={authorName} />
 
             <TimerIcon />
-            {`${node.data.markdownPost.childMarkdownRemark.timeToRead}min`}
+            {`${timeToRead}min`}
           </Typography>
         </Box>
-      ))}
-    </>
-  );
-};
+      );
+    })}
+  </>
+);

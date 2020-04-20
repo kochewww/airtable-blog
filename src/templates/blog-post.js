@@ -17,37 +17,44 @@ const Picture = styled(({ url, ...other }) => <Box {...other} />)({
 
 export default ({ data }) => {
   const post = data.allAirtableblog.edges[0].node.data;
+  const title = post.title;
+  const date = post.date;
+  const imageUrl = post.Image[0].url;
+  const html = post.markdownPost.childMarkdownRemark.html;
+  const authorName = post.author.map(({ data }) => data.name);
+  const tags = post.tags.map((tag) => (
+    <Box key={tag} display="inline-block" mt={2} mr={1}>
+      <Link to={`tags/${tag}`}>
+        <Chip label={tag} />
+      </Link>
+    </Box>
+  ));
+
   return (
     <Layout>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Typography display="inline" color="secondary" variant="h4">
-          {post.title}
+          {title}
         </Typography>
 
-        <Date date={post.date} />
+        <Date date={date} />
       </Box>
-      <Picture url={post.Image[0].url} />
+      <Picture url={imageUrl} />
       <div
         dangerouslySetInnerHTML={{
-          __html: post.markdownPost.childMarkdownRemark.html,
+          __html: html,
         }}
       />
 
       <Box diplay="inline">
-        <Author name={post.author[0].data.name}></Author>
+        <Author name={authorName}></Author>
         <a href={`https://github.com/${post.author[0].data.github}`}>
           <GitHubIcon fontSize="inherit"></GitHubIcon>
           GitHub
         </a>
       </Box>
 
-      {post.tags.map((tag) => (
-        <Box key={tag} display="inline-block" mt={2} mr={1}>
-          <Link to={`tags/${tag}`}>
-            <Chip label={tag} />
-          </Link>
-        </Box>
-      ))}
+      {tags}
     </Layout>
   );
 };
